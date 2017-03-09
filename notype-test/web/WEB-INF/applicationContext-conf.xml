@@ -6,5 +6,5 @@
 
 	<import resource="classpath*:applicationContext-init.xml"/>
 	<import resource="classpath*:applicationContext-db.xml"/>
-	<bean id="car" class="com.beanTest.Car" init-method="myInit" destroy-method="myDestroy" ></bean>
+	<bean id="car" class="com.beanLife.Car" init-method="myInit" destroy-method="myDestroy" ></bean>
 </beans>
