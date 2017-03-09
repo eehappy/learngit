@@ -1,0 +1,115 @@
+﻿<beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:mvc="http://www.springframework.org/schema/mvc"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xmlns:aop="http://www.springframework.org/schema/aop"
+	   xmlns:context="http://www.springframework.org/schema/context"
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans
+      http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+      http://www.springframework.org/schema/mvc
+      http://www.springframework.org/schema/mvc/spring-mvc-3.1.xsd
+      http://www.springframework.org/schema/aop
+      http://www.springframework.org/schema/aop/spring-aop-3.1.xsd
+	http://www.springframework.org/schema/context
+	http://www.springframework.org/schema/context/spring-context.xsd">
+
+	<!-- 启动包扫描功能，以便注册带有@Controller、@Service、@repository、@Component等注解的类成为spring的bean -->
+	<context:component-scan base-package="com.notype" />
+
+	<!-- 启动注解驱动的Spring MVC功能，注册请求url和注解POJO类方法的映射 -->
+	<mvc:annotation-driven />
+
+	<!-- 启动对@AspectJ注解的支持 -->
+	<aop:aspectj-autoproxy />
+	
+   <!--<bean id="multipartResolver"-->
+		<!--class="org.springframework.web.multipart.commons.CommonsMultipartResolver">-->
+		<!--<property name="defaultEncoding" value="UTF-8"></property>-->
+		<!--<property name="maxUploadSize" value="-1"></property>-->
+	<!--</bean> -->
+	
+	<!-- 明确js/css/jpg/gif等静态资源的访问不通过Constroller -->
+	<!--<mvc:default-servlet-handler />-->
+	
+	 <!--<bean id="conversionService" class="org.springframework.format.support.FormattingConversionServiceFactoryBean">-->
+    	<!--<property name="converters">-->
+    		<!--<set>-->
+    			<!--<bean class="com.gic.commons.util.DateConverter"></bean>-->
+    		<!--</set>-->
+    	<!--</property>-->
+    <!--</bean>-->
+
+	<!--<bean-->
+		<!--class="org.springframework.web.servlet.view.ContentNegotiatingViewResolver">-->
+		<!--<property name="order" value="1" />-->
+		<!--&lt;!&ndash; 扩展名至mimeType的映射,即 http://xxxx/rest.json 映射为 application/json http://xxxx/rest.xml -->
+			<!--映射为 application/xml &ndash;&gt;-->
+		<!--<property name="mediaTypes">-->
+			<!--<map>-->
+				<!--<entry key="json" value="application/json" />-->
+				<!--<entry key="xml" value="application/xml" />-->
+			<!--</map>-->
+		<!--</property>-->
+		<!--&lt;!&ndash; 用于开启 http://xxxx/rest?format=json 的支持 &ndash;&gt;-->
+		<!--<property name="favorParameter" value="true" />-->
+		<!--<property name="defaultViews">-->
+			<!--<list>-->
+				<!--&lt;!&ndash; JSON View &ndash;&gt;-->
+				<!--<bean-->
+					<!--class="org.springframework.web.servlet.view.json.MappingJacksonJsonView">-->
+				<!--</bean>-->
+				<!--&lt;!&ndash; XML View &ndash;&gt;-->
+				<!--&lt;!&ndash; <bean name="xStreamMarshallingView" class="org.springframework.web.servlet.view.xml.MarshallingView"> -->
+					<!--<property name="marshaller"> <bean class="org.springframework.oxm.xstream.XStreamMarshaller"> -->
+					<!--<property name="autodetectAnnotations" value="false"/> </bean> </property> -->
+					<!--</bean> &ndash;&gt;-->
+
+				<!--&lt;!&ndash; JAXB XML View &ndash;&gt;-->
+				<!--<bean class="org.springframework.web.servlet.view.xml.MarshallingView">-->
+					<!--<constructor-arg>-->
+						<!--&lt;!&ndash; &ndash;&gt;-->
+						<!--<bean class="org.springframework.oxm.jaxb.Jaxb2Marshaller">-->
+							<!--<property name="packagesToScan">-->
+								<!--<list>-->
+									<!--<value>-->
+										<!--com.gic.commons.webapi.response-->
+									<!--</value>-->
+								<!--</list>-->
+							<!--</property>-->
+							<!--<property name="marshallerProperties">-->
+								<!--<map>-->
+									<!--<entry key="jaxb.fragment">-->
+										<!--<value type="java.lang.Boolean">-->
+											<!--true-->
+										<!--</value>-->
+									<!--</entry>-->
+									<!--<entry key="com.sun.xml.internal.bind.characterEscapeHandler">-->
+										<!--<bean class="com.gic.commons.util.CharacterEscapeHandler">-->
+										<!--</bean>-->
+									<!--</entry>-->
+								<!--</map>-->
+							<!--</property>-->
+						<!--</bean>-->
+
+					<!--</constructor-arg>-->
+				<!--</bean>-->
+			<!--</list>-->
+		<!--</property>-->
+		<!--&lt;!&ndash; 设置为true以忽略对Accept Header的支持 &ndash;&gt;-->
+		<!--<property name="ignoreAcceptHeader" value="true" />-->
+	<!--</bean>-->
+
+	<!-- 视图解析器配置 -->
+	<bean class="org.springframework.web.servlet.view.BeanNameViewResolver" />
+	<!-- If no extension matched, use JSP view -->
+	<bean
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="order" value="2" />
+		<property name="prefix">
+			<value>/WEB-INF/view/</value>
+		</property>
+		<property name="suffix">
+			<value>.jsp</value>
+		</property>
+	</bean>
+
+</beans>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<import resource="classpath*:applicationContext-init.xml"/>
+	<import resource="classpath*:applicationContext-db.xml"/>
+	<bean id="car" class="com.beanTest.Car" init-method="myInit" destroy-method="myDestroy" ></bean>
+</beans>
