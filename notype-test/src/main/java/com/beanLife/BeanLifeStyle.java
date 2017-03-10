@@ -1,4 +1,4 @@
-package com.beanTest;
+package com.beanLife;
 
 import org.springframework.beans.factory.BeanFactory;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
